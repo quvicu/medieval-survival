@@ -37,11 +37,6 @@ public class Game {
         } while (isRunning);
     }
 
-
-    public Village getVillage() {
-        return village;
-    }
-
     private void gatherFood(){
         int randomFoodAmount = (int)(Math.random() * 18);
         int currentFood = village.getFood();
