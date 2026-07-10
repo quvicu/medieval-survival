@@ -10,7 +10,15 @@ public class Game {
                     1. Gather Food
                     2. Gather Wood
                     3. End Day
-                    4. Quit""";
+                    4. Talk to Scholar
+                    5. Quit""";
+    private static final String SCHOLAR_MENU =
+            """
+                    1. Talk to Scholar
+                    2. Binary ->Decimal
+                    3. Decimal -> Binary
+                    4. Ask Scholar:
+                    5. Leave""";
 
     private final Scanner scanner = new Scanner(System.in);
 
@@ -31,6 +39,9 @@ public class Game {
                     endDay();
                     break;
                 case 4:
+                    talkToScholar();
+                    break;
+                case 5:
                     quit();
                     break;
             }
@@ -58,6 +69,29 @@ public class Game {
     private void endDay(){
         village.setDay(village.getDay() + 1);
         System.out.println("Day " + village.getDay() + " begins.");
+    }
+
+    private void talkToScholar() {
+        do {
+            System.out.println(SCHOLAR_MENU);
+            int menuChoice = scanner.nextInt();
+            switch (menuChoice) {
+                case 1:
+                    System.out.println("W");
+                    break;
+                case 2:
+                    System.out.println("Binary -> Decimal");
+                    break;
+                case 3:
+                    System.out.println("Decimal -> Binary");
+                    break;
+                case 4:
+                    System.out.println("Ask Scholar:");
+                    break;
+                case 5:
+                    return;
+            }
+        }while (isRunning);
     }
 
     private void quit() {
