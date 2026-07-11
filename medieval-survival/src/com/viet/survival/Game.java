@@ -99,7 +99,7 @@ public class Game {
         String input = scanner.next();
         int result = input.charAt(0) - '0';
         for(int i = 1; i < input.length(); i++){
-            int inputNumber = (int)input.charAt(i) - 48;
+            int inputNumber = (int)input.charAt(i) - '0';
             result = (result * 2  + inputNumber);
         }
         System.out.println(result);
