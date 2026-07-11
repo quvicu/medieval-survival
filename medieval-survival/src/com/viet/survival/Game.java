@@ -97,8 +97,7 @@ public class Game {
 
     private void binaryToDecimal() {
         String input = scanner.next();
-        int firstNumber = input.charAt(0) - '0';
-        int result = firstNumber;
+        int result = input.charAt(0) - '0';
         for(int i = 1; i < input.length(); i++){
             int inputNumber = (int)input.charAt(i) - 48;
             result = (result * 2  + inputNumber);
