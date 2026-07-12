@@ -78,7 +78,7 @@ public class Game {
             int menuChoice = scanner.nextInt();
             switch (menuChoice) {
                 case 1:
-                    System.out.println("W");
+                    System.out.println("I am mute right now");
                     break;
                 case 2:
                     System.out.println("Binary -> Decimal");
@@ -104,7 +104,10 @@ public class Game {
             int inputNumber = (int)input.charAt(i) - '0';
             result = (result * 2  + inputNumber);
         }
-        System.out.println(result);
+        System.out.println(
+                "Calculating..." +
+                "\nBinary: " + input +
+                "\nDecimal: " + result + "\n");
     }
 
 
@@ -114,7 +117,10 @@ public class Game {
         StringBuilder builder = new StringBuilder();
         ArrayList<Integer> binaries = new ArrayList<>();
         if(input == 0){
-            System.out.println("The Binary of 0 is 0\n");
+            System.out.println(
+                    "Calculating...\n" +
+                    "Binary: 0\n" +
+                    "Decimal: 0\n");
             return;
         }
         else {
@@ -126,7 +132,10 @@ public class Game {
         for(int i = binaries.size(); i > 0; i--){
             builder.append(binaries.get(i-1));
         }
-        System.out.println("Calculating...\nDecimal: " + decimalInput + "\nBinary: " + builder.toString() + "\n");
+        System.out.println(
+                "Calculating...\n" +
+                "Decimal: " + decimalInput + "\n" +
+                "Binary: " + builder.toString() + "\n");
     }
 
     private void quit() {
