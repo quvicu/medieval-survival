@@ -1,5 +1,6 @@
 package com.viet.survival;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Game {
@@ -85,6 +86,7 @@ public class Game {
                     break;
                 case 3:
                     System.out.println("Decimal -> Binary");
+                    decimalToBinary();
                     break;
                 case 4:
                     System.out.println("Ask Scholar:");
@@ -103,6 +105,28 @@ public class Game {
             result = (result * 2  + inputNumber);
         }
         System.out.println(result);
+    }
+
+
+    private void decimalToBinary(){
+        int input = scanner.nextInt();
+        int decimalInput = input;
+        StringBuilder builder = new StringBuilder();
+        ArrayList<Integer> binaries = new ArrayList<>();
+        if(input == 0){
+            System.out.println("The Binary of 0 is 0\n");
+            return;
+        }
+        else {
+            while (input != 0) {
+                binaries.add(input % 2);
+                input /= 2;
+            }
+        }
+        for(int i = binaries.size(); i > 0; i--){
+            builder.append(binaries.get(i-1));
+        }
+        System.out.println("Calculating...\nDecimal: " + decimalInput + "\nBinary: " + builder.toString() + "\n");
     }
 
     private void quit() {
