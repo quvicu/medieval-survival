@@ -3,14 +3,33 @@ package com.viet.survival;
 
 public class Village {
 
+    private int population;
     private int food;
     private int wood;
     private int day;
 
-    public Village(int food, int wood, int day) {
+    public Village(int population, int food, int wood, int day) {
+        this.population = population;
         this.food = food;
         this.wood = wood;
         this.day = day;
+    }
+
+    public int getPopulation() { return population; }
+
+    public void recruitVillager() {
+        if(isEnoughFoodForRecruitment()) {
+            population++;
+            food -= 10;
+            System.out.println("Villager recruited!\n" +
+                               "Population: " + population);
+        }
+        else
+            System.out.println("Not enough food for recruitment, you need more than 10 Food!");
+    }
+
+    public boolean isEnoughFoodForRecruitment() {
+            return food > 10;
     }
 
     public int getFood() {
@@ -35,7 +54,7 @@ public class Village {
     }
 
     public void consumeFood(){
-        food -= 2;
+        food -= 2 * population;
     }
     public boolean isStarving(){
             return food <= 0;

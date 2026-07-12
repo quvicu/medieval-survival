@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Game {
-    private final Village village = new Village(10, 10, 1);
+    private final Village village = new Village(1, 10, 10, 1);
     private boolean isRunning = true;
     private static final String MENU =
             """
@@ -12,7 +12,8 @@ public class Game {
                     2. Gather Wood
                     3. End Day
                     4. Talk to Scholar
-                    5. Quit""";
+                    5. Recruit Villager
+                    6. Quit""";
     private static final String SCHOLAR_MENU =
             """
                     1. Talk to Scholar
@@ -43,13 +44,16 @@ public class Game {
                     talkToScholar();
                     break;
                 case 5:
+                    recruitVillager();
+                    break;
+                case 6:
                     quit();
                     break;
             }
         } while (isRunning);
     }
 
-    private void gatherFood(){
+    private void gatherFood() {
         int randomFoodAmount = (int)(Math.random() * 18);
         int currentFood = village.getFood();
         int totalFood = currentFood + randomFoodAmount;
@@ -58,7 +62,7 @@ public class Game {
         System.out.println("Gathered: " + randomFoodAmount + " Food\nTotal Food: " + totalFood);
     }
 
-    private void gatherWood(){
+    private void gatherWood() {
         int randomWoodAmount = (int)(Math.random() * 18);
         int currentWood = village.getWood();
         int totalWood = currentWood + randomWoodAmount;
@@ -67,11 +71,11 @@ public class Game {
         System.out.println("Gathered: " + randomWoodAmount + " Wood\nTotal Wood: " + totalWood);
     }
 
-    private void endDay(){
+    private void endDay() {
         village.consumeFood();
         System.out.println("Food consumed.");
 
-        if(village.isStarving()){
+        if(village.isStarving()) {
             System.out.println("Starving... Game over.");
             isRunning = false;
             return;
@@ -119,7 +123,7 @@ public class Game {
                 "\nDecimal: " + result + "\n");
     }
 
-    private void decimalToBinary(){
+    private void decimalToBinary() {
         int input = scanner.nextInt();
         int decimalInput = input;
         StringBuilder builder = new StringBuilder();
@@ -139,7 +143,7 @@ public class Game {
                 input /= 2;
             }
         }
-        for(int i = binaries.size(); i > 0; i--){
+        for(int i = binaries.size(); i > 0; i--) {
             builder.append(binaries.get(i-1));
         }
         System.out.println(
@@ -152,7 +156,12 @@ public class Game {
         isRunning = false;
     }
 
-    private void printVillageStats(){
+    private void recruitVillager() {
+            village.recruitVillager();
+    }
+
+    private void printVillageStats() {
+        System.out.println("Population: " + village.getPopulation());
         System.out.println("Day: " + village.getDay());
         System.out.println("Food: " + village.getFood());
         System.out.println("Wood: " + village.getWood());
