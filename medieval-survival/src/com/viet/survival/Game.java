@@ -118,9 +118,11 @@ public class Game {
         ArrayList<Integer> binaries = new ArrayList<>();
         if(input == 0){
             System.out.println(
-                    "Calculating...\n" +
-                    "Binary: 0\n" +
-                    "Decimal: 0\n");
+                    """
+                            Calculating...
+                            Binary: 0
+                            Decimal: 0
+                            """);
             return;
         }
         else {
@@ -135,7 +137,7 @@ public class Game {
         System.out.println(
                 "Calculating...\n" +
                 "Decimal: " + decimalInput + "\n" +
-                "Binary: " + builder.toString() + "\n");
+                "Binary: " + builder + "\n");
     }
 
     private void quit() {
