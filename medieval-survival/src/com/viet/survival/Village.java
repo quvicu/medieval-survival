@@ -34,6 +34,13 @@ public class Village {
         this.day = day;
     }
 
+    public void consumeFood(){
+        food -= 2;
+    }
+    public boolean isStarving(){
+            return food <= 0;
+    }
+
 }
 
 

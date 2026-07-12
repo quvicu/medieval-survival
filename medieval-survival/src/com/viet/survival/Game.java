@@ -68,6 +68,15 @@ public class Game {
     }
 
     private void endDay(){
+        village.consumeFood();
+        System.out.println("Food consumed.");
+
+        if(village.isStarving()){
+            System.out.println("Starving... Game over.");
+            isRunning = false;
+            return;
+        }
+
         village.setDay(village.getDay() + 1);
         System.out.println("Day " + village.getDay() + " begins.");
     }
@@ -110,7 +119,6 @@ public class Game {
                 "\nDecimal: " + result + "\n");
     }
 
-
     private void decimalToBinary(){
         int input = scanner.nextInt();
         int decimalInput = input;
@@ -150,6 +158,3 @@ public class Game {
         System.out.println("Wood: " + village.getWood());
     }
 }
-
-
-
