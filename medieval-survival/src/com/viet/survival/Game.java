@@ -1,6 +1,5 @@
 package com.viet.survival;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Game {
@@ -26,7 +25,7 @@ public class Game {
             int menuChoice = scanner.nextInt();
             switch (menuChoice) {
                 case 1:
-                    gatherFood();
+                    village.gatherFood();
                     break;
                 case 2:
                     gatherWood();
@@ -45,15 +44,6 @@ public class Game {
                     break;
             }
         } while (isRunning);
-    }
-
-    private void gatherFood() {
-        int randomFoodAmount = (int)(Math.random() * 18);
-        int currentFood = village.getFood();
-        int totalFood = currentFood + randomFoodAmount;
-
-        village.setFood(totalFood);
-        System.out.println("Gathered: " + randomFoodAmount + " Food\nTotal Food: " + totalFood);
     }
 
     private void gatherWood() {

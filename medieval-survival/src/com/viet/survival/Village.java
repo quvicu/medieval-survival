@@ -7,6 +7,7 @@ public class Village {
     private int food;
     private int wood;
     private int day;
+    private static final int MAX_FOOD = 200;
 
     public Village(int population, int food, int wood, int day) {
         this.population = population;
@@ -30,6 +31,12 @@ public class Village {
 
     public boolean isEnoughFoodForRecruitment() {
             return food > 10;
+    }
+
+    public void gatherFood() {
+        int amount = (int)(Math.random() * 18);
+        food = Math.min(food + amount, MAX_FOOD); //
+        System.out.println("Gathered: " + amount + " Food\nTotal Food: " + food);
     }
 
     public int getFood() {
