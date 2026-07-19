@@ -7,7 +7,8 @@ public class Village {
     private int food;
     private int wood;
     private int day;
-    private static final int MAX_FOOD = 200;
+    private static final int MAX_FOOD = 50;
+    private static final int MAX_WOOD = 50;
 
     public Village(int population, int food, int wood, int day) {
         this.population = population;
@@ -39,18 +40,17 @@ public class Village {
         System.out.println("Gathered: " + amount + " Food\nTotal Food: " + food);
     }
 
-    public int getFood() {
-        return food;
-    }
-    public void setFood(int food) {
-        this.food = food;
+    public void gatherWood() {
+        int amount = (int)(Math.random() * 18);
+        wood = Math.min(wood + amount, MAX_WOOD);
+        System.out.println("Gathered: " + amount + " Wood\nTotal Wood: " + wood);
     }
 
-    public int getWood() {
-        return wood;
-    }
-    public void setWood(int wood) {
-        this.wood = wood;
+    public void printStats() {
+        System.out.println("Population: " + population);
+        System.out.println("Day: " + day);
+        System.out.println("Food: " + food);
+        System.out.println("Wood: " + wood);
     }
 
     public int getDay() {

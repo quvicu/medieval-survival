@@ -20,7 +20,7 @@ public class Game {
     public void start() {
         do {
             System.out.println("=== Medieval Survival ===");
-            printVillageStats();
+            village.printStats();
             System.out.println(MENU);
             int menuChoice = scanner.nextInt();
             switch (menuChoice) {
@@ -28,7 +28,7 @@ public class Game {
                     village.gatherFood();
                     break;
                 case 2:
-                    gatherWood();
+                    village.gatherWood();
                     break;
                 case 3:
                     endDay();
@@ -44,15 +44,6 @@ public class Game {
                     break;
             }
         } while (isRunning);
-    }
-
-    private void gatherWood() {
-        int randomWoodAmount = (int)(Math.random() * 18);
-        int currentWood = village.getWood();
-        int totalWood = currentWood + randomWoodAmount;
-
-        village.setWood(totalWood);
-        System.out.println("Gathered: " + randomWoodAmount + " Wood\nTotal Wood: " + totalWood);
     }
 
     private void endDay() {
@@ -77,10 +68,4 @@ public class Game {
             village.recruitVillager();
     }
 
-    private void printVillageStats() {
-        System.out.println("Population: " + village.getPopulation());
-        System.out.println("Day: " + village.getDay());
-        System.out.println("Food: " + village.getFood());
-        System.out.println("Wood: " + village.getWood());
-    }
 }
