@@ -60,13 +60,6 @@ public class Village {
         System.out.println("Wood: " + wood);
     }
 
-    public int getDay() {
-        return day;
-    }
-    public void setDay(int day) {
-        this.day = day;
-    }
-
     public void consumeFood(){
         food -= 2 * population;
     }
