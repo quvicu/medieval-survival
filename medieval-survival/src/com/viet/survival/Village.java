@@ -2,7 +2,6 @@ package com.viet.survival;
 
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Village {
 
