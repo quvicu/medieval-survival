@@ -44,6 +44,15 @@ public class Village {
         System.out.println("Gathered: " + amount + " Wood\nTotal Wood: " + wood);
     }
 
+    public void endDay() {
+        consumeFood();
+        System.out.println("Food consumed.");
+        if (!isStarving()) {
+            day++;
+            System.out.println("Day " + day + " begins.");
+        }
+    }
+
     public void printStats() {
         System.out.println("Population: " + population);
         System.out.println("Day: " + day);

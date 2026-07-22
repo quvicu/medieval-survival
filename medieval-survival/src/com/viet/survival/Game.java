@@ -31,13 +31,13 @@ public class Game {
                     village.gatherWood();
                     break;
                 case 3:
-                    endDay();
+                    village.endDay();
                     break;
                 case 4:
                     scholar.start();
                     break;
                 case 5:
-                    recruitVillager();
+                    village.recruitVillager();
                     break;
                 case 6:
                     quit();
@@ -47,25 +47,14 @@ public class Game {
     }
 
     private void endDay() {
-        village.consumeFood();
-        System.out.println("Food consumed.");
-
-        if(village.isStarving()) {
+        village.endDay();
+        if (village.isStarving()) {
             System.out.println("Starving... Game over.");
             isRunning = false;
-            return;
         }
-
-        village.setDay(village.getDay() + 1);
-        System.out.println("Day " + village.getDay() + " begins.");
     }
 
     private void quit() {
         isRunning = false;
     }
-
-    private void recruitVillager() {
-            village.recruitVillager();
-    }
-
 }
