@@ -31,7 +31,7 @@ public class Game {
                     village.gatherWood();
                     break;
                 case 3:
-                    village.endDay();
+                    endDay();
                     break;
                 case 4:
                     scholar.start();
