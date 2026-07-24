@@ -94,8 +94,4 @@ public class VillageEvents {
     public int getAmount() {
         return amount;
     }
-
-    public double getProbability() {
-        return probability;
-    }
 }
