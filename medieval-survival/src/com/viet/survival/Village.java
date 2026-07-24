@@ -1,8 +1,5 @@
 package com.viet.survival;
 
-
-import java.util.ArrayList;
-
 public class Village {
 
     private int population;
