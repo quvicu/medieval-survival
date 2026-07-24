@@ -79,10 +79,6 @@ public class VillageEvents {
         return null;
     }
 
-    public String getText() {
-        return text;
-    }
-
     public void printText(){
         System.out.println(text);
     }
