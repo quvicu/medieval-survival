@@ -48,8 +48,14 @@ public class Game {
 
     private void endDay() {
         village.endDay();
-        if (village.isStarving()) {
-            System.out.println("Starving... Game over.");
+        if (village.isDoomed()) {
+            if (village.isStarving()) {
+                System.out.println("Village has starved out.\nGame over...");
+            } else if (village.isUnpopulated()) {
+                System.out.println("Village has unpopulated out.\nGame over...");
+            } else if (village.isOutOfWood()) {
+                System.out.println("Village has run out of wood.\nGame over...");
+            }
             isRunning = false;
         }
     }
