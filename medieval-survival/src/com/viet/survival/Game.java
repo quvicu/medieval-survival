@@ -3,7 +3,37 @@ package com.viet.survival;
 import java.util.Scanner;
 
 public class Game {
-    private final Village village = new Village(1, 10, 10, 1);
+    private final SaveManager saveManager = new SaveManager();
+    private final Village village;
+
+    public Game() {
+        Village chosenVillage = null;
+        boolean initialized = false;
+        do {
+            System.out.println("1. New Game\n2. Load Game");
+            int choice = scanner.nextInt();
+            switch (choice) {
+                case 1:
+                    chosenVillage = new Village(1, 5, 5, 1);
+                    initialized = true;
+                    break;
+                case 2:
+                    Village loaded = saveManager.loadGame();
+                    if (loaded == null) {
+                        System.out.println("No saving file found.");
+                    } else {
+                        chosenVillage = loaded;
+                        initialized = true;
+                    }
+                    break;
+                default:
+                    System.out.println("Illegal choice.");
+                    break;
+            }
+        } while (!initialized);
+        village = chosenVillage;
+    }
+
     private boolean isRunning = true;
     private static final String MENU =
             """
