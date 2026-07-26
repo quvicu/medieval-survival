@@ -26,21 +26,28 @@ public class Game {
             switch (menuChoice) {
                 case 1:
                     village.gatherFood();
+                    saveGame();
                     break;
                 case 2:
                     village.gatherWood();
+                    saveGame();
                     break;
                 case 3:
                     endDay();
+                    if(isRunning) {
+                        saveGame();
+                    }
                     break;
                 case 4:
                     scholar.start();
                     break;
                 case 5:
                     village.recruitVillager();
+                    saveGame();
                     break;
                 case 6:
                     quit();
+                    saveGame();
                     break;
             }
         } while (isRunning);
@@ -56,11 +63,16 @@ public class Game {
             } else if (village.isOutOfWood()) {
                 System.out.println("Village has run out of wood.\nGame over...");
             }
-            isRunning = false;
+            quit();
+            saveManager.deleteSave();
         }
     }
 
     private void quit() {
         isRunning = false;
+    }
+
+    private void saveGame() {
+        saveManager.saveGame(village);
     }
 }
