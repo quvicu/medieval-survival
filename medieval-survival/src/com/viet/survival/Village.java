@@ -18,6 +18,14 @@ public class Village {
         this.day = day;
     }
 
+    public int getFood() {
+        return food;
+    }
+
+    public int getPopulation() {
+        return population;
+    }
+
     public void recruitVillager() {
         if(isEnoughFoodForRecruitment()) {
             population++;
