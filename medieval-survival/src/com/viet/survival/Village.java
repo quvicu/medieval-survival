@@ -22,6 +22,10 @@ public class Village {
         return food;
     }
 
+    public int getWood() {
+        return wood;
+    }
+
     public int getPopulation() {
         return population;
     }

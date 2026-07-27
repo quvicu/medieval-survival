@@ -1,9 +1,39 @@
 package com.viet.survival;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 class VillageTest {
+
+    @RepeatedTest(1000)
+    void gatherFoodUsesCorrectAmount() {
+        Village village = new Village(1,100,20,1);
+        village.gatherFood();
+        assertTrue(village.getFood() >= 100 && village.getFood() <= 117);
+    }
+
+    @RepeatedTest(1000)
+    void gatherWoodUsesCorrectAmount() {
+        Village village = new Village(1,10,100,1);
+        village.gatherWood();
+        assertTrue(village.getWood() >= 100 && village.getWood() <= 117);
+    }
+
+    @RepeatedTest(1000)
+    void gatherFoodDoesntExceedMaxCapacity() {
+        Village village = new Village(1,500,500,1);
+        village.gatherFood();
+        assertTrue(village.getFood() <= 500);
+    }
+
+    @RepeatedTest(1000)
+    void gatherWoodDoesntExceedMaxCapacity() {
+        Village village = new Village(1,100,500,1);
+        village.gatherWood();
+        assertTrue(village.getWood() <= 500);
+    }
 
     @Test
     void recruitVillagerSucceedsWhenEnoughFood() {
