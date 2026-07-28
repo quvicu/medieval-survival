@@ -11,7 +11,7 @@ public class Village {
     private static final int MAX_WOOD = 500;
     private static final int MAX_POPULATION = 100;
 
-    private final VillageEventProvider eventProvider;
+    private final transient VillageEventProvider eventProvider;
 
     public Village(int population, int food, int wood, int day) {
         this(population, food, wood, day, new RandomVillageEventProvider());
