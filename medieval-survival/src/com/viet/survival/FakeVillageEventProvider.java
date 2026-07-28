@@ -1,7 +1,5 @@
 package com.viet.survival;
 
-import com.viet.survival.VillageEvents;
-
 public class FakeVillageEventProvider implements VillageEventProvider {
     private final VillageEvents fixedEvent;
 
