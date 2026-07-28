@@ -8,6 +8,14 @@ import org.junit.jupiter.api.Test;
 class VillageTest {
 
     @RepeatedTest(1000)
+void endDayEventChangesCorrectly() {
+        VillageEvents testEvent = new VillageEvents("Test-Event", "food", 10, 1);
+        Village village = new Village(1,100,100,1, new FakeVillageEventProvider(testEvent));
+        village.endDay();
+        assertEquals(100 + testEvent.getAmount() - 2, village.getFood());
+    }
+
+    @RepeatedTest(1000)
     void gatherFoodUsesCorrectAmount() {
         Village village = new Village(1,100,20,1);
         village.gatherFood();
