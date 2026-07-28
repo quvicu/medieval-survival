@@ -30,3 +30,6 @@ out/
 
 # Save files
 Saves/
+
+# Maven
+target/
