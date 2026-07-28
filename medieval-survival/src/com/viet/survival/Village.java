@@ -11,11 +11,18 @@ public class Village {
     private static final int MAX_WOOD = 500;
     private static final int MAX_POPULATION = 100;
 
+    private final VillageEventProvider eventProvider;
+
     public Village(int population, int food, int wood, int day) {
+        this(population, food, wood, day, new RandomVillageEventProvider());
+    }
+
+    public Village(int population, int food, int wood, int day, VillageEventProvider eventProvider) {
         this.population = population;
         this.food = food;
         this.wood = wood;
         this.day = day;
+        this.eventProvider = eventProvider;
     }
 
     public int getFood() {
@@ -63,7 +70,7 @@ public class Village {
         if (!isDoomed()) {
             day++;
             System.out.println("Day " + day + " begins.");
-            VillageEvents villageEvent = VillageEvents.getRandomVillageEvent();
+            VillageEvents villageEvent = eventProvider.getRandomVillageEvent();
             if(villageEvent != null) {
                 executeVillageEvent(villageEvent);
             }
