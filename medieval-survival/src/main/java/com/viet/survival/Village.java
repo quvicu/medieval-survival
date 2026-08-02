@@ -12,17 +12,19 @@ public class Village {
     private static final int MAX_POPULATION = 100;
 
     private final transient VillageEventProvider eventProvider;
+    private final transient FoodConsumptionStrategy foodConsumptionStrategy;
 
     public Village(int population, int food, int wood, int day) {
-        this(population, food, wood, day, new RandomVillageEventProvider());
+        this(population, food, wood, day, new RandomVillageEventProvider(), new LowFoodConsumptionStrategy());
     }
 
-    public Village(int population, int food, int wood, int day, VillageEventProvider eventProvider) {
+    public Village(int population, int food, int wood, int day, VillageEventProvider eventProvider, FoodConsumptionStrategy foodConsumptionStrategy) {
         this.population = population;
         this.food = food;
         this.wood = wood;
         this.day = day;
         this.eventProvider = eventProvider;
+        this.foodConsumptionStrategy = foodConsumptionStrategy;
     }
 
     public int getFood() {
@@ -104,7 +106,7 @@ public class Village {
     }
 
     public void consumeFood(){
-        food -= 2 * population;
+        food -= foodConsumptionStrategy.getFoodConsumptionFactor() * population;
     }
 
     public boolean isDoomed(){

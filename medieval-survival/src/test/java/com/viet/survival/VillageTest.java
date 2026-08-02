@@ -7,10 +7,12 @@ import org.junit.jupiter.api.Test;
 
 class VillageTest {
 
+
+
     @RepeatedTest(1000)
 void endDayEventChangesCorrectly() {
         VillageEvents testEvent = new VillageEvents("Test-Event", "food", 10, 1);
-        Village village = new Village(1,100,100,1, new FakeVillageEventProvider(testEvent));
+        Village village = new Village(1,100,100,1, new FakeVillageEventProvider(testEvent), new LowFoodConsumptionStrategy());
         village.endDay();
         assertEquals(100 + testEvent.getAmount() - 2, village.getFood());
     }
@@ -78,6 +80,13 @@ void endDayEventChangesCorrectly() {
         Village village = new Village(3,20,10,10);
         village.consumeFood();
         assertEquals(14, village.getFood());
+    }
+
+    @Test
+    void checkConsumeFoodInterfaceDelegation() {
+        Village village = new Village(3,30,19, 1, new RandomVillageEventProvider(), new HighFoodConsumptionStrategy());
+        village.consumeFood();
+        assertEquals(18, village.getFood());
     }
 
     @Test
