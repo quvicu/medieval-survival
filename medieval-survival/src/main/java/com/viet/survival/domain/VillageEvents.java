@@ -4,30 +4,30 @@ import java.util.ArrayList;
 
 public class VillageEvents {
     private final String text;
-    private final String resourceType;
+    private final ResourceType resourceType;
     private final int amount;
     private final double probability;
 
     private static final ArrayList<VillageEvents> villageEventsList =  new ArrayList<>();
 
     //Negative events
-    private static final VillageEvents ratInfestation = new VillageEvents("Rats had a feast in your food storage.", "food", -3, 1);
-    private static final VillageEvents foodSpoilage = new VillageEvents("Some of ur food spoiled", "food", -3, 1);
-    private static final VillageEvents wolfAttack = new VillageEvents("Wolves attacked ur village and it has cost a life", "population", -1, 1);
-    private static final VillageEvents brokenTools = new VillageEvents("Broken tools", "wood", -2, 1);
+    private static final VillageEvents ratInfestation = new VillageEvents("Rats had a feast in your food storage.", ResourceType.FOOD, -3, 1);
+    private static final VillageEvents foodSpoilage = new VillageEvents("Some of ur food spoiled", ResourceType.FOOD, -3, 1);
+    private static final VillageEvents wolfAttack = new VillageEvents("Wolves attacked ur village and it has cost a life", ResourceType.POPULATION, -1, 1);
+    private static final VillageEvents brokenTools = new VillageEvents("Broken tools",  ResourceType.WOOD, -2, 1);
 
     //Neutral events
-    private static final VillageEvents batsInTheNight = new VillageEvents("A swarm of bats circled above the village before disappearing into the darkness.", "none", 0, 2);
-    private static final VillageEvents crimsonMoon = new VillageEvents("The moon glowed with a deep crimson hue throughout the night.", "none", 0, 2);
-    private static final VillageEvents distantHowls = new VillageEvents("Howls echoed across the valley long after sunset.", "none", 0, 2);
-    private static final VillageEvents watchfulEyes = new VillageEvents("Several villagers reported feeling watched while walking home at night.", "none", 0, 2);
-    private static final VillageEvents blackMist = new VillageEvents("A cold black mist rolled through the village during the night.", "none", 0, 2);
-    private static final VillageEvents silentDawn = new VillageEvents("The villagers awoke to an unsettling silence. Not a single bird could be heard.", "none", 0, 2);
-    private static final VillageEvents paleFog = new VillageEvents("A pale fog drifted through the village streets until sunrise.", "none", 0, 2);
+    private static final VillageEvents batsInTheNight = new VillageEvents("A swarm of bats circled above the village before disappearing into the darkness.",  ResourceType.NONE, 0, 2);
+    private static final VillageEvents crimsonMoon = new VillageEvents("The moon glowed with a deep crimson hue throughout the night.",  ResourceType.NONE, 0, 2);
+    private static final VillageEvents distantHowls = new VillageEvents("Howls echoed across the valley long after sunset.",  ResourceType.NONE, 0, 2);
+    private static final VillageEvents watchfulEyes = new VillageEvents("Several villagers reported feeling watched while walking home at night.",  ResourceType.NONE, 0, 2);
+    private static final VillageEvents blackMist = new VillageEvents("A cold black mist rolled through the village during the night.",  ResourceType.NONE, 0, 2);
+    private static final VillageEvents silentDawn = new VillageEvents("The villagers awoke to an unsettling silence. Not a single bird could be heard.",  ResourceType.NONE, 0, 2);
+    private static final VillageEvents paleFog = new VillageEvents("A pale fog drifted through the village streets until sunrise.",  ResourceType.NONE, 0, 2);
     //Positive Events
-    private static final VillageEvents theWhiteStag = new VillageEvents("A rare white stag wandered near the village. Hunters returned with plenty of meat.", "food", 8, 1);
-    private static final VillageEvents huntersMoon = new VillageEvents("Under the pale moonlight, the hunters enjoyed unusual success.", "food", 5, 1);
-    private static final VillageEvents caravanWreck = new VillageEvents("Villagers discovered the remains of a shattered merchant caravan on the old forest road. \nThe cargo was beyond saving, but one survivor was found among the wreckage.", "population", 1, 1);
+    private static final VillageEvents theWhiteStag = new VillageEvents("A rare white stag wandered near the village. Hunters returned with plenty of meat.", ResourceType.FOOD, 8, 1);
+    private static final VillageEvents huntersMoon = new VillageEvents("Under the pale moonlight, the hunters enjoyed unusual success.", ResourceType.FOOD, 5, 1);
+    private static final VillageEvents caravanWreck = new VillageEvents("Villagers discovered the remains of a shattered merchant caravan on the old forest road. \nThe cargo was beyond saving, but one survivor was found among the wreckage.",  ResourceType.POPULATION, 1, 1);
 
     //initializes village events
     static {
@@ -51,7 +51,7 @@ public class VillageEvents {
         villageEventsList.add(paleFog);
     }
 
-    VillageEvents(String text, String resourceType, int amount, double probability) {
+    VillageEvents(String text, ResourceType resourceType, int amount, double probability) {
         this.text = text;
         this.resourceType = resourceType;
         this.amount = amount;
@@ -83,7 +83,7 @@ public class VillageEvents {
         System.out.println(text);
     }
 
-    public String getResourceType() {
+    public ResourceType getResourceType() {
         return resourceType;
     }
 
