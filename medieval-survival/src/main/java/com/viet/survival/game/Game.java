@@ -1,6 +1,5 @@
 package com.viet.survival.game;
 
-import com.viet.survival.Scholar;
 import com.viet.survival.domain.Village;
 import com.viet.survival.persistence.SaveManager;
 
@@ -44,12 +43,11 @@ public class Game {
                     1. Gather Food
                     2. Gather Wood
                     3. End Day
-                    4. Talk to Scholar
+                    4. WIP
                     5. Recruit Villager
                     6. Quit""";
 
     private final Scanner scanner = new Scanner(System.in);
-    private final Scholar scholar = new Scholar(scanner);
 
     public void start() {
         do {
@@ -73,7 +71,7 @@ public class Game {
                     }
                     break;
                 case 4:
-                    scholar.start();
+                    System.out.println("WIP");
                     break;
                 case 5:
                     village.recruitVillager();
