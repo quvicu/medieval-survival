@@ -1,4 +1,9 @@
-package com.viet.survival;
+package com.viet.survival.domain;
+
+import com.viet.survival.strategy.FoodConsumptionStrategy;
+import com.viet.survival.strategy.LowFoodConsumptionStrategy;
+import com.viet.survival.strategy.RandomVillageEventProvider;
+import com.viet.survival.strategy.VillageEventProvider;
 
 public class Village {
 

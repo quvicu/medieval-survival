@@ -1,4 +1,4 @@
-package com.viet.survival;
+package com.viet.survival.strategy;
 
 public class HighFoodConsumptionStrategy implements FoodConsumptionStrategy {
     @Override

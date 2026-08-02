@@ -1,7 +1,11 @@
-package com.viet.survival;
+package com.viet.survival.domain;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import com.viet.survival.strategy.FakeVillageEventProvider;
+import com.viet.survival.strategy.HighFoodConsumptionStrategy;
+import com.viet.survival.strategy.LowFoodConsumptionStrategy;
+import com.viet.survival.strategy.RandomVillageEventProvider;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,8 @@
-package com.viet.survival;
+package com.viet.survival.game;
+
+import com.viet.survival.Scholar;
+import com.viet.survival.domain.Village;
+import com.viet.survival.persistence.SaveManager;
 
 import java.util.Scanner;
 

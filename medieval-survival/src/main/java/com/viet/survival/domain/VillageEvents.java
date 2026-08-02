@@ -1,4 +1,4 @@
-package com.viet.survival;
+package com.viet.survival.domain;
 
 import java.util.ArrayList;
 

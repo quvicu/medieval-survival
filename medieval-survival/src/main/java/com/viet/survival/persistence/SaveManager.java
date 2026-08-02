@@ -1,6 +1,8 @@
-package com.viet.survival;
+package com.viet.survival.persistence;
 
 import com.google.gson.Gson;
+import com.viet.survival.domain.Village;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
