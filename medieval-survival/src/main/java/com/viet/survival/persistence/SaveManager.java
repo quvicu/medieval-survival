@@ -1,9 +1,10 @@
 package com.viet.survival.persistence;
 
-import com.google.gson.Gson;
-import com.viet.survival.domain.Village;
+import com.google.gson.*;
+import com.viet.survival.domain.*;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -11,8 +12,12 @@ public class SaveManager {
     private static final String saves = "Saves";
     private static final String saveGameJson = "savegame.json";
 
+    private final Gson gson = new GsonBuilder()
+            .registerTypeAdapter(Villager.class, new VillagerReader())
+            .create();
+
     public void saveGame(Village village){
-        String json = new Gson().toJson(village);
+        String json = gson.toJson(village);
         try {
             Files.createDirectories(Path.of(saves));
             Files.writeString(Path.of(saves, saveGameJson), json);
@@ -25,8 +30,7 @@ public class SaveManager {
         Village loadedVillage = null;
         try {
             String content = Files.readString(Path.of(saves, saveGameJson));
-            loadedVillage = new Gson().fromJson(content, Village.class);
-            System.out.println(content);
+            loadedVillage = gson.fromJson(content, Village.class);
         } catch (IOException e) {
             System.out.println("Error while reading: " + e.getMessage());
         }
@@ -41,4 +45,16 @@ public class SaveManager {
         }
     }
 
+    // Liest nur das "villagerType"-Namensschild, baut dann den passenden konkreten Typ
+    private static class VillagerReader implements JsonDeserializer<Villager> {
+        @Override
+        public Villager deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) {
+            String type = json.getAsJsonObject().get("villagerType").getAsString();
+            if (type.equals("Farmer")) {
+                return context.deserialize(json, Farmer.class);
+            } else {
+                return context.deserialize(json, Woodcutter.class);
+            }
+        }
+    }
 }
