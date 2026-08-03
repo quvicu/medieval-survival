@@ -1,13 +1,18 @@
 package com.viet.survival.game;
 
+import com.viet.survival.domain.Farmer;
 import com.viet.survival.domain.Village;
+import com.viet.survival.domain.Villager;
 import com.viet.survival.persistence.SaveManager;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Game {
     private final SaveManager saveManager = new SaveManager();
     private final Village village;
+    private final ArrayList<Villager> villagers = new ArrayList<>();
 
     public Game() {
         Village chosenVillage = null;
@@ -17,7 +22,8 @@ public class Game {
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
-                    chosenVillage = new Village(1, 5, 5, 1);
+                    chosenVillage = new Village(villagers, 5, 5, 1);
+                    villagers.add(new Farmer(1, "Famy"));
                     initialized = true;
                     break;
                 case 2:
@@ -74,7 +80,7 @@ public class Game {
                     System.out.println("WIP");
                     break;
                 case 5:
-                    village.recruitVillager();
+                    village.recruitFarmer();
                     saveGame();
                     break;
                 case 6:

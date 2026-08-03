@@ -90,4 +90,8 @@ public class VillageEvents {
     public int getAmount() {
         return amount;
     }
+
+    public boolean isAmountPositive() {
+        return amount > 0;
+    }
 }
