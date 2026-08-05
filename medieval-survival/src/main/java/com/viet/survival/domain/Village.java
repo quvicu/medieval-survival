@@ -89,18 +89,11 @@ public class Village {
     private void executeVillageEvent(VillageEvents villageEvent) {
         villageEvent.printText();
         switch (villageEvent.getResourceType()) {
-            case  ResourceType.FOOD:
-                food = Math.min(food + villageEvent.getAmount(), MAX_FOOD);
-                break;
-            case  ResourceType.WOOD:
-                wood = Math.min(wood + villageEvent.getAmount(), MAX_WOOD);
-                break;
-            case  ResourceType.POPULATION:
-                killOrAddVillager(villageEvent);
-                break;
-            default:
-                break;
-        }
+            case  ResourceType.FOOD -> food = Math.min(food + villageEvent.getAmount(), MAX_FOOD);
+            case  ResourceType.WOOD -> wood = Math.min(wood + villageEvent.getAmount(), MAX_WOOD);
+            case  ResourceType.POPULATION -> killOrAddVillager(villageEvent);
+            case ResourceType.NONE -> {}
+        };
     }
 
     private void killOrAddVillager(VillageEvents villageEvent) {
