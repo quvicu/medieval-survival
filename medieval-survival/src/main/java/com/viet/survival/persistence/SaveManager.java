@@ -50,11 +50,11 @@ public class SaveManager {
         @Override
         public Villager deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) {
             String type = json.getAsJsonObject().get("villagerType").getAsString();
-            if (type.equals("Farmer")) {
-                return context.deserialize(json, Farmer.class);
-            } else {
-                return context.deserialize(json, Woodcutter.class);
-            }
+            VillagerType villagerType = VillagerType.valueOf(type.toUpperCase());
+            return switch (villagerType) {
+                case FARMER -> context.deserialize(json, Farmer.class);
+                case WOODCUTTER -> context.deserialize(json, Woodcutter.class);
+            };
         }
     }
 }

@@ -6,7 +6,6 @@ import com.viet.survival.domain.Villager;
 import com.viet.survival.persistence.SaveManager;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Game {

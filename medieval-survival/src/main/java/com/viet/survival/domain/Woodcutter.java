@@ -3,7 +3,7 @@ package com.viet.survival.domain;
 public class Woodcutter extends Villager {
 
     public Woodcutter(int villagerId, String villagerName) {
-        super(villagerId, villagerName, "Woodcutter");
+        super(villagerId, villagerName, VillagerType.WOODCUTTER);
     }
 
     @Override
