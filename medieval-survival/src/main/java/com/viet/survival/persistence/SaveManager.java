@@ -45,7 +45,7 @@ public class SaveManager {
         }
     }
 
-    // Liest nur das "villagerType"-Namensschild, baut dann den passenden konkreten Typ
+    // Only reads the "villagerType" name tag and then builds it into the correct villager type
     private static class VillagerReader implements JsonDeserializer<Villager> {
         @Override
         public Villager deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) {
