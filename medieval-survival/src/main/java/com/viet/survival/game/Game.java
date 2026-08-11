@@ -11,7 +11,6 @@ import java.util.Scanner;
 public class Game {
     private final SaveManager saveManager = new SaveManager();
     private final Village village;
-    private final ArrayList<Villager> villagers = new ArrayList<>();
 
     public Game() {
         Village chosenVillage = null;

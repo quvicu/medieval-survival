@@ -57,4 +57,9 @@ public class SaveManager {
             };
         }
     }
+
+    // This method is only used for tests by SaveManagerTest
+    Villager deserializeVillager(String json) {
+        return gson.fromJson(json, Villager.class);
+    }
 }
