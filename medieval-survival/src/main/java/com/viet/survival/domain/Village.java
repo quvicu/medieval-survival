@@ -5,6 +5,7 @@ import com.viet.survival.strategy.LowFoodConsumptionStrategy;
 import com.viet.survival.strategy.RandomVillageEventProvider;
 import com.viet.survival.strategy.VillageEventProvider;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Village {
@@ -32,6 +33,13 @@ public class Village {
         this.day = day;
         this.eventProvider = eventProvider;
         this.foodConsumptionStrategy = foodConsumptionStrategy;
+    }
+
+    public static Village createStartingVillage() {
+        ArrayList<Villager> villagers = new ArrayList<>();
+        Farmer startingFarmer = new Farmer(1, "StartingFarmer");
+        villagers.add(startingFarmer);
+        return  new Village(villagers, 10, 10, 1);
     }
 
     public int getFood() {

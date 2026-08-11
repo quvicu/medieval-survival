@@ -20,8 +20,7 @@ public class Game {
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
-                    chosenVillage = new Village(villagers, 5, 5, 1);
-                    villagers.add(new Farmer(1, "Famy"));
+                    chosenVillage = Village.createStartingVillage();
                     initialized = true;
                     break;
                 case 2:
