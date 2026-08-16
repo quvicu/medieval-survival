@@ -9,6 +9,8 @@ import javafx.stage.Stage;
 
 import java.util.Objects;
 
+import static com.viet.survival.gui.AssetLoader.loadImage;
+
 public class MainWindow {
 
     public void show(Stage stage) {
@@ -49,9 +51,5 @@ public class MainWindow {
         pane.getChildren().add(loadGameButton);
         newGameButton.setText("New Game");
         loadGameButton.setText("Load Game");
-    }
-
-    private Image loadImage(String path) {
-        return new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/" + path)));
     }
 }
