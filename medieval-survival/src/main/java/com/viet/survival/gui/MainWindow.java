@@ -1,13 +1,14 @@
 package com.viet.survival.gui;
 
+import com.viet.survival.domain.Village;
+import com.viet.survival.persistence.SaveManager;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-
-import java.util.Objects;
 
 import static com.viet.survival.gui.AssetLoader.loadImage;
 
@@ -41,11 +42,25 @@ public class MainWindow {
 
         Button newGameButton = new Button();
         newGameButton.setTranslateY(-20);
-        newGameButton.setOnAction(event -> System.out.println("New Game"));
+        newGameButton.setOnAction(event -> {
+            Village newVillage = Village.createStartingVillage();
+            new VillageView(newVillage).show(stage);
+        });
 
         Button loadGameButton = new Button();
         loadGameButton.setTranslateY(20);
-        loadGameButton.setOnAction(event -> System.out.println("Load Game"));
+        loadGameButton.setOnAction(event -> {
+            Village loadedVillage = new SaveManager().loadGame();
+            if (loadedVillage != null) {
+                new VillageView(loadedVillage).show(stage);
+            }
+            else {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Error");
+                alert.setContentText("No saved game found...");
+                alert.showAndWait();
+            }
+        });
 
         pane.getChildren().add(newGameButton);
         pane.getChildren().add(loadGameButton);
