@@ -1,6 +1,5 @@
 package com.viet.survival.gui;
 
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -40,9 +39,11 @@ public class MainWindow {
 
         Button newGameButton = new Button();
         newGameButton.setTranslateY(-20);
+        newGameButton.setOnAction(event -> System.out.println("New Game"));
 
         Button loadGameButton = new Button();
         loadGameButton.setTranslateY(20);
+        loadGameButton.setOnAction(event -> System.out.println("Load Game"));
 
         pane.getChildren().add(newGameButton);
         pane.getChildren().add(loadGameButton);
