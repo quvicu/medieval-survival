@@ -203,4 +203,34 @@ class VillageTest {
         boolean result = village.isUnpopulated();
         assertTrue(result);
     }
+
+    @Test
+    void isReturnValueInGatherFood0WhenFoodIsMax() {
+        Village village = new Village(defaultVillagers, 500, 10, 1);
+        assertEquals(0, village.gatherFood());
+    }
+
+    @Test
+    void isReturnValueInGatherWood0WhenFoodIsMax() {
+        Village village = new Village(defaultVillagers, 10, 500, 1);
+        assertEquals(0, village.gatherWood());
+    }
+
+    @Test
+    void isRecruitFarmerFalseWhenFoodIsExactlyTen() {
+        Village village = new Village(defaultVillagers, 10, 10, 1);
+        assertFalse(village.recruitFarmer());
+    }
+
+    @Test
+    void isRecruitFarmerTrueWhenFoodIsBiggerThanTen() {
+        Village village = new Village(defaultVillagers, 11, 10, 1);
+        assertTrue(village.recruitFarmer());
+    }
+
+    @Test
+    void isRecruitFarmerFalseWhenFoodIsSmallerThanTen() {
+        Village village = new Village(defaultVillagers, 9, 10, 1);
+        assertFalse(village.recruitFarmer());
+    }
 }

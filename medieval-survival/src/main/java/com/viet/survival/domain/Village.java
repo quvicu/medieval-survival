@@ -52,31 +52,37 @@ public class Village {
 
     public int getPopulation() { return villagers.size(); }
 
-    public void recruitFarmer() {
+    public boolean recruitFarmer() {
         if(isEnoughFoodForRecruitment()) {
             villagers.add(addNewFarmer());
             food -= 10;
             System.out.println("Villager recruited!\n" +
                                "Population: " + villagers.size());
+            return true;
         }
         else
             System.out.println("Not enough food for recruitment, you need more than 10 Food!");
+        return false;
     }
 
     public boolean isEnoughFoodForRecruitment() {
             return food > 10;
     }
 
-    public void gatherFood() {
+    public int gatherFood() {
+        int foodBefore = food;
         int amount = (int)(Math.random() * 18);
         food = Math.min(food + amount, MAX_FOOD); //
         System.out.println("Gathered: " + amount + " Food\nTotal Food: " + food);
+        return food - foodBefore;
     }
 
-    public void gatherWood() {
+    public int gatherWood() {
+        int woodBefore = wood;
         int amount = (int)(Math.random() * 18);
         wood = Math.min(wood + amount, MAX_WOOD);
         System.out.println("Gathered: " + amount + " Wood\nTotal Wood: " + wood);
+        return wood - woodBefore;
     }
 
     public void endDay() {

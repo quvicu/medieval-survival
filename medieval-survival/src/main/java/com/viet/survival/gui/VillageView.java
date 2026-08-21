@@ -2,12 +2,12 @@ package com.viet.survival.gui;
 
 import com.viet.survival.domain.Village;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 import static com.viet.survival.gui.AssetLoader.loadImage;
@@ -37,13 +37,20 @@ public class VillageView {
         StackPane pane = new StackPane();
         HBox hBox = new HBox();
         hBox.setSpacing(10);
+        VBox contentBox = new VBox();
+        contentBox.setSpacing(30);
+        HBox buttonBox = new HBox();
+        buttonBox.setSpacing(10);
+        buttonBox.setAlignment(Pos.CENTER);
 
-        //extract it duplicate
         backgroundView.fitWidthProperty().bind(pane.widthProperty());
         backgroundView.fitHeightProperty().bind(pane.heightProperty());
         pane.getChildren().add(backgroundView);
 
-        pane.getChildren().add(hBox);
+        contentBox.getChildren().add(hBox);
+        contentBox.getChildren().add(buttonBox);
+        pane.getChildren().add(contentBox);
+
 
         String foodAmount = String.valueOf(village.getFood());
         Label foodLabel = new Label(foodAmount);
@@ -60,6 +67,47 @@ public class VillageView {
         Label populationLabel = new Label(populationAmount);
         hBox.getChildren().add(populationView);
         hBox.getChildren().add(populationLabel);
+
+        Label statusLabel = new Label();
+        contentBox.getChildren().add(statusLabel);
+
+        Button gatherFoodButton = new Button("Gather Food", new ImageView(foodImage));
+        gatherFoodButton.setOnAction(event -> {
+            statusLabel.setText("Food Gathered:" + village.gatherFood());
+            foodLabel.setText(String.valueOf(village.getFood()));
+        });
+        buttonBox.getChildren().add(gatherFoodButton);
+
+        Button gatherWoodButton = new Button("Gather Wood", new ImageView(woodImage));
+        gatherWoodButton.setOnAction(event -> {
+            statusLabel.setText("Wood Gathered:" + village.gatherWood());
+            woodLabel.setText(String.valueOf(village.getWood()));
+        });
+        buttonBox.getChildren().add(gatherWoodButton);
+
+        Button recruitVillagerButton = new Button("Recruit Farmer", new ImageView(populationImage));
+        recruitVillagerButton.setOnAction(event -> {
+            if(village.recruitFarmer()){
+                populationLabel.setText(String.valueOf(village.getPopulation()));
+                foodLabel.setText(String.valueOf(village.getFood()));
+                statusLabel.setText("Recruited a new Farmer");
+            }
+            else {
+                statusLabel.setText("Not enough food for recruitment");
+            }
+        });
+        buttonBox.getChildren().add(recruitVillagerButton);
+
+        Button endDayButton = new Button("End Day...", new ImageView(populationImage));
+        endDayButton.setOnAction(event -> {
+            village.endDay();
+            statusLabel.setText("Ending Day......");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Error");
+            alert.setContentText("Not implemented yet");
+            alert.showAndWait();
+        });
+        buttonBox.getChildren().add(endDayButton);
 
         stage.getScene().setRoot(pane);
     }
