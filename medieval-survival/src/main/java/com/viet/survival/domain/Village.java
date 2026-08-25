@@ -85,19 +85,25 @@ public class Village {
         return wood - woodBefore;
     }
 
-    public void endDay() {
-        consumeFood();
-        System.out.println("Food consumed.");
+    public String endDay() {
+        String villageIsNullMessage = "Error village event! is null";
+        String doomedVillageMessage = "Village is doomed!";
         if (!isDoomed()) {
+            int consumedFood = consumeFood();
+            System.out.println("Food consumed: " + consumedFood);
             day++;
             System.out.println("Day " + day + " begins.");
             VillageEvents villageEvent = eventProvider.getRandomVillageEvent();
             if(villageEvent != null) {
                 executeVillageEvent(villageEvent);
+                return villageEvent.getText() + "\nVillage has consumed: " + consumedFood + " Food.";
             }
-            else
-                System.out.println("Error village event! is null");
+            else {
+                System.out.println(villageIsNullMessage);
+                return villageIsNullMessage;
+            }
         }
+        return doomedVillageMessage;
     }
 
     private void executeVillageEvent(VillageEvents villageEvent) {
@@ -107,7 +113,7 @@ public class Village {
             case  ResourceType.WOOD -> wood = Math.min(wood + villageEvent.getAmount(), MAX_WOOD);
             case  ResourceType.POPULATION -> killOrAddVillager(villageEvent);
             case ResourceType.NONE -> {}
-        };
+        }
     }
 
     private void killOrAddVillager(VillageEvents villageEvent) {
@@ -150,8 +156,10 @@ public class Village {
         System.out.println("Wood: " + wood);
     }
 
-    public void consumeFood(){
+    public int consumeFood(){
+        int foodBefore = food;
         food -= foodConsumptionStrategy.getFoodConsumptionFactor() * villagers.size();
+        return foodBefore - food;
     }
 
     public boolean isDoomed(){

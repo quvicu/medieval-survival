@@ -83,6 +83,8 @@ public class VillageEvents {
         System.out.println(text);
     }
 
+    public String getText() { return text; }
+
     public ResourceType getResourceType() {
         return resourceType;
     }

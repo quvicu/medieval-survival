@@ -2,9 +2,9 @@ package com.viet.survival.gui;
 
 import com.viet.survival.domain.Village;
 import javafx.geometry.Pos;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -68,19 +68,22 @@ public class VillageView {
         hBox.getChildren().add(populationView);
         hBox.getChildren().add(populationLabel);
 
-        Label statusLabel = new Label();
-        contentBox.getChildren().add(statusLabel);
+        TextArea statusArea = new TextArea();
+        statusArea.setPrefRowCount(4);
+        statusArea.setMaxWidth(400);
+        statusArea.setEditable(false);
+        contentBox.getChildren().add(statusArea);
 
         Button gatherFoodButton = new Button("Gather Food", new ImageView(foodImage));
         gatherFoodButton.setOnAction(event -> {
-            statusLabel.setText("Food Gathered:" + village.gatherFood());
+            statusArea.appendText("Food Gathered:" + village.gatherFood() + "\n");
             foodLabel.setText(String.valueOf(village.getFood()));
         });
         buttonBox.getChildren().add(gatherFoodButton);
 
         Button gatherWoodButton = new Button("Gather Wood", new ImageView(woodImage));
         gatherWoodButton.setOnAction(event -> {
-            statusLabel.setText("Wood Gathered:" + village.gatherWood());
+            statusArea.appendText("Wood Gathered:" + village.gatherWood() + "\n");
             woodLabel.setText(String.valueOf(village.getWood()));
         });
         buttonBox.getChildren().add(gatherWoodButton);
@@ -90,10 +93,10 @@ public class VillageView {
             if(village.recruitFarmer()){
                 populationLabel.setText(String.valueOf(village.getPopulation()));
                 foodLabel.setText(String.valueOf(village.getFood()));
-                statusLabel.setText("Recruited a new Farmer");
+                statusArea.appendText("Recruited a new Farmer\n");
             }
             else {
-                statusLabel.setText("Not enough food for recruitment");
+                statusArea.appendText("Not enough food for recruitment\n");
             }
         });
         buttonBox.getChildren().add(recruitVillagerButton);
@@ -101,11 +104,11 @@ public class VillageView {
         Button endDayButton = new Button("End Day...", new ImageView(populationImage));
         endDayButton.setOnAction(event -> {
             village.endDay();
-            statusLabel.setText("Ending Day......");
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Error");
-            alert.setContentText("Not implemented yet");
-            alert.showAndWait();
+            statusArea.appendText("Ending Day......\n");
+            statusArea.appendText(village.endDay() + "\n");
+            foodLabel.setText(String.valueOf(village.getFood()));
+            woodLabel.setText(String.valueOf(village.getWood()));
+            populationLabel.setText(String.valueOf(village.getPopulation()));
         });
         buttonBox.getChildren().add(endDayButton);
 
